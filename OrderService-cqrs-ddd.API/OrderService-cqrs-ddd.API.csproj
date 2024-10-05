@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
-        <RootNamespace>OrderService_cqrs_ddd</RootNamespace>
+        <RootNamespace>OrderService_cqrs_ddd.API</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

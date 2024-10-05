@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderService_cqrs_ddd.Application.Commands;
 
-namespace OrderService_cqrs_ddd.API;
+namespace OrderService_cqrs_ddd.API.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
