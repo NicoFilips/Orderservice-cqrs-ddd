@@ -1,6 +1,4 @@
-﻿using OrderService_cqrs_ddd.Application.Commands;
-using OrderService_cqrs_ddd.Application.Domain.Events;
-using OrderService_cqrs_ddd.Domain.Common;
+﻿using OrderService_cqrs_ddd.Domain.Common;
 using OrderService_cqrs_ddd.Domain.Entities;
 using OrderService_cqrs_ddd.Domain.Events;
 
@@ -13,6 +11,9 @@ public class Order
     public List<OrderItem> Items { get; private set; }
     public string Status { get; private set; }
     public decimal TotalAmount => Items.Sum(i => i.TotalPrice);
+
+    private List<IDomainEvent> _domainEvents;
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
 
     public Order(List<OrderItem> items)
     {
@@ -39,8 +40,7 @@ public class Order
     // Methode, um ein Domain Event hinzuzufügen
     private void AddDomainEvent(IDomainEvent domainEvent)
     {
-        // Hier würdest du das Event in eine Liste von Events der Entität hinzufügen,
-        // damit es später veröffentlicht werden kann.
-        DomainEvents.Add(domainEvent);
+        _domainEvents = _domainEvents ?? new List<IDomainEvent>();
+        _domainEvents.Add(domainEvent);
     }
 }

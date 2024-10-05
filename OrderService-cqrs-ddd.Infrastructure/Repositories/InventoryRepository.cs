@@ -1,6 +1,7 @@
 ﻿using OrderService_cqrs_ddd.Application.Repositories;
 using OrderService_cqrs_ddd.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using OrderService_cqrs_ddd.Infrastructure.Persistence;
 
 namespace OrderService_cqrs_ddd.Infrastructure.Repositories;
 
