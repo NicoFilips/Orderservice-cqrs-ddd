@@ -1,6 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService-cqrs-ddd", "OrderService-cqrs-ddd\OrderService-cqrs-ddd.csproj", "{E0A71CF4-80D9-4990-8C60-BB973438418C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService-cqrs-ddd.API", "OrderService-cqrs-ddd.API\OrderService-cqrs-ddd.API.csproj", "{E0A71CF4-80D9-4990-8C60-BB973438418C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService-cqrs-ddd.Domain", "OrderService-cqrs-ddd.Domain\OrderService-cqrs-ddd.Domain.csproj", "{FB21D460-EEB9-43A5-AE02-FEBF6C35BF74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService-cqrs-ddd.Application", "OrderService-cqrs-ddd.Application\OrderService-cqrs-ddd.Application.csproj", "{D4982C4B-E492-4647-A1DA-3F05282429EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService-cqrs-ddd.Infrastructure", "OrderService-cqrs-ddd.Infrastructure\OrderService-cqrs-ddd.Infrastructure.csproj", "{B86FE1B7-E55F-4DF8-B39D-81506098D8F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +18,17 @@ Global
 		{E0A71CF4-80D9-4990-8C60-BB973438418C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0A71CF4-80D9-4990-8C60-BB973438418C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0A71CF4-80D9-4990-8C60-BB973438418C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB21D460-EEB9-43A5-AE02-FEBF6C35BF74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB21D460-EEB9-43A5-AE02-FEBF6C35BF74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB21D460-EEB9-43A5-AE02-FEBF6C35BF74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB21D460-EEB9-43A5-AE02-FEBF6C35BF74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4982C4B-E492-4647-A1DA-3F05282429EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4982C4B-E492-4647-A1DA-3F05282429EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4982C4B-E492-4647-A1DA-3F05282429EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4982C4B-E492-4647-A1DA-3F05282429EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B86FE1B7-E55F-4DF8-B39D-81506098D8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B86FE1B7-E55F-4DF8-B39D-81506098D8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B86FE1B7-E55F-4DF8-B39D-81506098D8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B86FE1B7-E55F-4DF8-B39D-81506098D8F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

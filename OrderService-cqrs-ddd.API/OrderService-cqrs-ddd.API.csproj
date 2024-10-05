@@ -15,7 +15,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Application\Queries\" />
+      <ProjectReference Include="..\OrderService-cqrs-ddd.Application\OrderService-cqrs-ddd.Application.csproj" />
+      <ProjectReference Include="..\OrderService-cqrs-ddd.Infrastructure\OrderService-cqrs-ddd.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,3 +1,5 @@
+using OrderService_cqrs_ddd.Application.Commands.Handlers;
+using OrderService_cqrs_ddd.Application.Repositories;
 using OrderService_cqrs_ddd.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OrderService_cqrs_ddd.Application.Commands;
 
 namespace OrderService_cqrs_ddd.API;
 
@@ -14,7 +15,6 @@ public class OrdersController : ControllerBase
         _mediator = mediator;
     }
 
-    // POST: api/orders
     [HttpPost]
     public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
     {
@@ -22,11 +22,10 @@ public class OrdersController : ControllerBase
         return Ok(result); // Returns the created Order ID
     }
 
-    // DELETE: api/orders/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> CancelOrder(Guid id)
     {
         await _mediator.Send(new CancelOrderCommand { OrderId = id });
-        return NoContent(); // Returns 204 status code
+        return NoContent();  // Gibt einen 204-Statuscode zurück, was bedeutet, dass die Anfrage erfolgreich war, aber keine Daten zurückgegeben werden.
     }
 }
