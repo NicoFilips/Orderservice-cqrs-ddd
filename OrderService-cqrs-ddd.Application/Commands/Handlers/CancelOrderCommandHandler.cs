@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using OrderService_cqrs_ddd.Infrastructure;
+using OrderService_cqrs_ddd.Application.Repositories;
 
 namespace OrderService_cqrs_ddd.Application.Commands.Handlers;
 

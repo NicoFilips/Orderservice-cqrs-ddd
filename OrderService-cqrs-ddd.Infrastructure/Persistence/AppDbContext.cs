@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderService_cqrs_ddd.Domain.Entities;
 
-namespace OrderService_cqrs_ddd.Infrastructure;
+namespace OrderService_cqrs_ddd.Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
 {
@@ -8,5 +9,5 @@ public class AppDbContext : DbContext
     {
     }
 
-    public DbSet<Order> Orders { get; set; }
+    public DbSet<InventoryItem> InventoryItems { get; set; }
 }

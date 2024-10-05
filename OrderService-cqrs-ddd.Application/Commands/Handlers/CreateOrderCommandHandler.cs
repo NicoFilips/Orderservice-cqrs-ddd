@@ -1,4 +1,8 @@
-﻿namespace OrderService_cqrs_ddd.Application.Commands.Handlers;
+﻿using MediatR;
+using OrderService_cqrs_ddd.Application.Repositories;
+using OrderService_cqrs_ddd.Domain.Aggregates;
+
+namespace OrderService_cqrs_ddd.Application.Commands.Handlers;
 
 public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Guid>
 {
@@ -13,7 +17,6 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
 
     public async Task<Guid> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
     {
-        // Logik zum Erstellen der Bestellung
         var order = new Order(command.CustomerId, command.Items);
 
         // Artikel reservieren

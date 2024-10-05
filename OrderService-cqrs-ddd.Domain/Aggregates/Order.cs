@@ -2,6 +2,7 @@
 using OrderService_cqrs_ddd.Application.Domain.Events;
 using OrderService_cqrs_ddd.Domain.Common;
 using OrderService_cqrs_ddd.Domain.Entities;
+using OrderService_cqrs_ddd.Domain.Events;
 
 namespace OrderService_cqrs_ddd.Domain.Aggregates;
 
@@ -34,7 +35,7 @@ public class Order
         // Domain Event for order cancelled
         AddDomainEvent(new OrderCancelled(Id));
     }
-    
+
     // Methode, um ein Domain Event hinzuzufügen
     private void AddDomainEvent(IDomainEvent domainEvent)
     {
