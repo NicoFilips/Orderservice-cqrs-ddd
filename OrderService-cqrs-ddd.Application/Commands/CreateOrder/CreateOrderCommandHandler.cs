@@ -19,15 +19,12 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
     {
         var order = new Order(command.CustomerId, command.Items);
 
-        // Artikelreservierung vorbereiten: Mapping von Produkt-IDs und Mengen
         var productQuantities = command.Items.ToDictionary(item => item.ProductId, item => item.Quantity);
 
-        // Artikel im Lager reservieren
         await _inventoryRepository.ReserveItemsAsync(productQuantities);
 
-        // Bestellung speichern
         await _orderRepository.SaveAsync(order);
 
-        return order.Id;  // Rückgabe der Order ID
+        return order.Id;
     }
 }

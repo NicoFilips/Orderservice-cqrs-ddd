@@ -10,22 +10,16 @@ public class AppDbContext : DbContext
         : base(options)
     {}
 
-    // DbSet für Orders
     public DbSet<Order> Orders { get; set; }
 
-    // DbSet für InventoryItems
     public DbSet<InventoryItem> InventoryItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
 
-        // Konfiguration für Order
         modelBuilder.Entity<Order>().HasKey(o => o.Id);
 
-        // Konfiguration für InventoryItem
         modelBuilder.Entity<InventoryItem>().HasKey(i => i.ProductId);
-
-        // Weitere Konfigurationen falls nötig...
     }
 }

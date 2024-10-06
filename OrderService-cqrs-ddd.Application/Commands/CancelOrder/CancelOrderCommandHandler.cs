@@ -15,7 +15,6 @@ public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, Uni
 
     public async Task<Unit> Handle(CancelOrderCommand request, CancellationToken cancellationToken)
     {
-        // Die Bestellung mit der übergebenen OrderId laden
         var order = await _orderRepository.GetByIdAsync(request.OrderId);
         if (order == null)
         {
