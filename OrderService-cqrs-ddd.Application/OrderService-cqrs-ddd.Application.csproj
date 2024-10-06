@@ -16,8 +16,4 @@
       <ProjectReference Include="..\OrderService_cqrs_ddd.CrossCuttingConcerns\OrderService_cqrs_ddd.CrossCuttingConcerns.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Services\" />
-    </ItemGroup>
-
 </Project>
