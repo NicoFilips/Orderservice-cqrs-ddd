@@ -17,6 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\OrderService-cqrs-ddd.Application\OrderService-cqrs-ddd.Application.csproj" />
       <ProjectReference Include="..\OrderService-cqrs-ddd.Infrastructure\OrderService-cqrs-ddd.Infrastructure.csproj" />
+      <ProjectReference Include="..\OrderService_cqrs_ddd.CrossCuttingConcerns\OrderService_cqrs_ddd.CrossCuttingConcerns.csproj" />
     </ItemGroup>
 
 </Project>

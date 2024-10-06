@@ -13,4 +13,5 @@ public class OrderItem
         Quantity = quantity;
         UnitPrice = unitPrice;
     }
+    protected OrderItem() {}
 }

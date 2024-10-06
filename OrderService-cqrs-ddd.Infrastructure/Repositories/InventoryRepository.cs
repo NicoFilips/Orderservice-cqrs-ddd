@@ -19,18 +19,23 @@ public class InventoryRepository : IInventoryRepository
         return await _dbContext.InventoryItems.FirstOrDefaultAsync(i => i.ProductId == productId);
     }
 
-    public async Task ReserveItemsAsync(List<OrderItem> items)
+    public async Task ReserveItemsAsync(Dictionary<Guid, int> productQuantities)
     {
-        foreach (var item in items)
+        foreach (var product in productQuantities)
         {
-            var inventoryItem = await GetItemAsync(item.ProductId);
-            if (inventoryItem == null || inventoryItem.Quantity < item.Quantity)
+            var inventoryItem = await GetItemAsync(product.Key);
+            if (inventoryItem == null)
             {
-                throw new InvalidOperationException($"Nicht genügend Lagerbestand für Produkt {item.ProductId}");
+                throw new InvalidOperationException($"Product with ID {product.Key} not found in inventory.");
+            }
+
+            if (inventoryItem.Quantity < product.Value)
+            {
+                throw new InvalidOperationException($"Not enough stock for product with ID {product.Key}. Available: {inventoryItem.Quantity}, Requested: {product.Value}");
             }
 
             // Reduziere den Bestand
-            inventoryItem.Quantity -= item.Quantity;
+            inventoryItem.Quantity -= product.Value;
             _dbContext.InventoryItems.Update(inventoryItem);
         }
 
@@ -38,4 +43,3 @@ public class InventoryRepository : IInventoryRepository
         await _dbContext.SaveChangesAsync();
     }
 }
-

@@ -1,9 +1,10 @@
 ﻿using MediatR;
 using OrderService_cqrs_ddd.Application.Repositories;
+using OrderService_cqrs_ddd.SharedKernel.Exceptions;
 
-namespace OrderService_cqrs_ddd.Application.Commands.Handlers;
+namespace OrderService_cqrs_ddd.Application.Commands.CancelOrder;
 
-public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand>
+public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, Unit>
 {
     private readonly IOrderRepository _orderRepository;
 
@@ -20,14 +21,10 @@ public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand>
         {
             throw new NotFoundException($"Order with ID {request.OrderId} not found.");
         }
+        order.Cancel();
 
-        // Geschäftslogik zum Stornieren der Bestellung ausführen
-        order.Cancel();  // Annahme: Es gibt eine Cancel-Methode in der Order-Entität
-
-        // Änderungen speichern
         await _orderRepository.SaveAsync(order);
 
-        // Rückgabe von Unit, da der Command keine Rückgabe erwartet
         return Unit.Value;
     }
 }

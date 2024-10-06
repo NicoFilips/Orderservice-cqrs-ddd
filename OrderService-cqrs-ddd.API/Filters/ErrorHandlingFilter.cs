@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Net;
+using OrderService_cqrs_ddd.SharedKernel.Exceptions;
 
 namespace OrderService_cqrs_ddd.API.Filters;
 

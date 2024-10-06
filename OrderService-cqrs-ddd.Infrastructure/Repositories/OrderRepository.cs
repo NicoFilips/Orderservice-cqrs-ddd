@@ -1,30 +1,36 @@
 ﻿using OrderService_cqrs_ddd.Application.Repositories;
+using OrderService_cqrs_ddd.Domain.Aggregates;
+using OrderService_cqrs_ddd.Infrastructure.Persistence;
 
-namespace OrderService_cqrs_ddd.Infrastructure;
+namespace OrderService_cqrs_ddd.Infrastructure.Repositories;
 
 public class OrderRepository : IOrderRepository
 {
-    private readonly ApplicationDbContext _context;
+    private readonly AppDbContext _dbContext;
 
-    public OrderRepository(ApplicationDbContext context)
+    public OrderRepository(AppDbContext dbContext)
     {
-        _context = context;
+        _dbContext = dbContext;
     }
 
-    public async Task AddAsync(Order order)
+    public async Task<Order> GetByIdAsync(Guid orderId)
     {
-        _context.Orders.Add(order);
-        await _context.SaveChangesAsync();
+        return await _dbContext.Orders.FindAsync(orderId);
     }
 
-    public async Task<Order> GetByIdAsync(Guid id)
+    public async Task SaveAsync(Order order)
     {
-        return await _context.Orders.FindAsync(id);
+        _dbContext.Orders.Update(order);
+        await _dbContext.SaveChangesAsync();
     }
 
-    public async Task UpdateAsync(Order order)
+    public async Task DeleteAsync(Guid orderId)
     {
-        _context.Orders.Update(order);
-        await _context.SaveChangesAsync();
+        var order = await _dbContext.Orders.FindAsync(orderId);
+        if (order != null)
+        {
+            _dbContext.Orders.Remove(order);
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

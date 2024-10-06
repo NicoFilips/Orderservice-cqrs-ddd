@@ -3,7 +3,7 @@
 public class InventoryItem
 {
     public Guid ProductId { get; private set; }
-    public int Quantity { get; private set; }
+    public int Quantity { get; set; }
 
     // Konstruktor für Initialisierung
     public InventoryItem(Guid productId, int quantity)

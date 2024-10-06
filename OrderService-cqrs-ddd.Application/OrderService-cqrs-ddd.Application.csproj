@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\OrderService-cqrs-ddd.Domain\OrderService-cqrs-ddd.Domain.csproj" />
+      <ProjectReference Include="..\OrderService_cqrs_ddd.CrossCuttingConcerns\OrderService_cqrs_ddd.CrossCuttingConcerns.csproj" />
     </ItemGroup>
 
     <ItemGroup>

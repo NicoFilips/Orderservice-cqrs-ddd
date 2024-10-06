@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using OrderService_cqrs_ddd.Application.Commands;
+using OrderService_cqrs_ddd.Application.Commands.CancelOrder;
+using OrderService_cqrs_ddd.Application.Commands.CreateOrder;
 
 namespace OrderService_cqrs_ddd.API.Controller;
 
@@ -19,13 +20,13 @@ public class OrdersController : ControllerBase
     public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
     {
         var result = await _mediator.Send(command);
-        return Ok(result); // Returns the created Order ID
+        return Ok(result);
     }
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> CancelOrder(Guid id)
     {
         await _mediator.Send(new CancelOrderCommand { OrderId = id });
-        return NoContent();  // Gibt einen 204-Statuscode zurück, was bedeutet, dass die Anfrage erfolgreich war, aber keine Daten zurückgegeben werden.
+        return NoContent();
     }
 }

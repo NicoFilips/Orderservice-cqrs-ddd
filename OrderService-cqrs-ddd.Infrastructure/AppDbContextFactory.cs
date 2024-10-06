@@ -7,7 +7,8 @@ public class AppDbContextFactory
 {
     public static AppDbContext CreateInMemoryContext()
     {
-        var options = new DbContextOptionsBuilder<AppDbContextes>()
+        // Konfiguration des InMemory-DbContext
+        var options = new DbContextOptionsBuilder<AppDbContext>()
                      .UseInMemoryDatabase(Guid.NewGuid().ToString())  // Jede Instanz hat eine eigene DB
                      .Options;
 
