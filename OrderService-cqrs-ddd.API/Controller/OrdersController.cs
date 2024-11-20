@@ -10,6 +10,7 @@ namespace OrderService_cqrs_ddd.API.Controller;
 public class OrdersController : ControllerBase
 {
     private readonly IMediator _mediator;
+    private readonly string ntype = "OrdersController";
 
     public OrdersController(IMediator mediator)
     {
