@@ -258,3 +258,6 @@ csharp_style_expression_bodied_operators = when_on_single_line
 
 # CA1848: Use LoggerMessage delegates
 dotnet_diagnostic.CA1848.severity = suggestion
+
+# Deactivate the suggestion for primary constructors
+dotnet_diagnostic.IDE0290.severity = none

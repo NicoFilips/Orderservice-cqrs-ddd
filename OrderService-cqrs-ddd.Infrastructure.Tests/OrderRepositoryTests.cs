@@ -1,5 +1,5 @@
-using NUnit.Framework;
 using FluentAssertions;
+using NUnit.Framework;
 using OrderService_cqrs_ddd.Domain.Aggregates;
 using OrderService_cqrs_ddd.Domain.Entities;
 using OrderService_cqrs_ddd.Infrastructure.Persistence;
@@ -16,16 +16,12 @@ public class OrderRepositoryTests
     [SetUp]
     public void SetUp()
     {
-        // Verwende die InMemory-Datenbank für jeden Test
         _dbContext = AppDbContextFactory.CreateInMemoryContext();
         _orderRepository = new OrderRepository(_dbContext);
     }
 
     [TearDown]
-    public void TearDown()
-    {
-        _dbContext.Dispose(); // DbContext nach jedem Test entsorgen
-    }
+    public void TearDown() => _dbContext.Dispose();
 
     [Test]
     public async Task AddOrder_Should_Add_Order_To_InMemoryDb()
@@ -35,7 +31,7 @@ public class OrderRepositoryTests
 
         // Act
         await _orderRepository.SaveAsync(order);
-        var retrievedOrder = await _orderRepository.GetByIdAsync(order.Id);
+        Order retrievedOrder = await _orderRepository.GetByIdAsync(order.Id);
 
         // Assert
         retrievedOrder.Should().NotBeNull();
@@ -46,7 +42,7 @@ public class OrderRepositoryTests
     public async Task GetById_Should_Return_Null_If_Order_Not_Found()
     {
         // Act
-        var retrievedOrder = await _orderRepository.GetByIdAsync(Guid.NewGuid());
+        Order retrievedOrder = await _orderRepository.GetByIdAsync(Guid.NewGuid());
 
         // Assert
         retrievedOrder.Should().BeNull();
@@ -61,9 +57,9 @@ public class OrderRepositoryTests
 
         // Act
         await _orderRepository.DeleteAsync(order.Id);
-        var retrievedOrder = await _orderRepository.GetByIdAsync(order.Id);
+        Order retrievedOrder = await _orderRepository.GetByIdAsync(order.Id);
 
         // Assert
-        retrievedOrder.Should().BeNull(); // Bestellung sollte nach dem Löschen nicht mehr existieren
+        retrievedOrder.Should().BeNull();
     }
 }

@@ -15,11 +15,7 @@ public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, Uni
 
     public async Task<Unit> Handle(CancelOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = await _orderRepository.GetByIdAsync(request.OrderId);
-        if (order == null)
-        {
-            throw new NotFoundException($"Order with ID {request.OrderId} not found.");
-        }
+        Domain.Aggregates.Order order = await _orderRepository.GetByIdAsync(request.OrderId) ?? throw new NotFoundException($"Order with ID {request.OrderId} not found.");
         order.Cancel();
 
         await _orderRepository.SaveAsync(order);

@@ -12,16 +12,9 @@ public class Money
         Currency = currency ?? throw new ArgumentNullException(nameof(currency));
     }
 
-    public Money Add(Money other)
-    {
-        if (Currency != other.Currency)
-            throw new InvalidOperationException("Cannot add money with different currencies");
+    public Money Add(Money other) => Currency != other.Currency
+            ? throw new InvalidOperationException("Cannot add money with different currencies")
+            : new Money(Amount + other.Amount, Currency);
 
-        return new Money(Amount + other.Amount, Currency);
-    }
-
-    public Money Multiply(int factor)
-    {
-        return new Money(Amount * factor, Currency);
-    }
+    public Money Multiply(int factor) => new(Amount * factor, Currency);
 }

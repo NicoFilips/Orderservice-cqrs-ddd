@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using OrderService_cqrs_ddd.Domain.Events;
 
-namespace MyApp.Application.EventHandlers;
+namespace OrderService_cqrs_ddd.Application.EventHandlers;
 
-public class OrderCreatedEventHandler : INotificationHandler<OrderCreated>
+internal sealed class OrderCreatedEventHandler : INotificationHandler<OrderCreated>
 {
     public Task Handle(OrderCreated notification, CancellationToken cancellationToken)
     {

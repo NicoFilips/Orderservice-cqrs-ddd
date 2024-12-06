@@ -1,15 +1,9 @@
 ﻿namespace OrderService_cqrs_ddd.Domain.Entities;
 
-public class InventoryItem
+public class InventoryItem(Guid productId, int quantity)
 {
-    public Guid ProductId { get; private set; }
-    public int Quantity { get; set; }
-
-    public InventoryItem(Guid productId, int quantity)
-    {
-        ProductId = productId;
-        Quantity = quantity;
-    }
+    public Guid ProductId { get; private set; } = productId;
+    public int Quantity { get; set; } = quantity;
 
     public void ReduceQuantity(int quantity)
     {

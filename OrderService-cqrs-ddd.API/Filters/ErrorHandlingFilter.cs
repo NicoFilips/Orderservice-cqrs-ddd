@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System.Net;
 using OrderService_cqrs_ddd.SharedKernel.Exceptions;
 
 namespace OrderService_cqrs_ddd.API.Filters;
@@ -10,8 +10,8 @@ public class ErrorHandlingFilter : IExceptionFilter
 {
     public void OnException(ExceptionContext context)
     {
-        var exception = context.Exception;
-        var code = HttpStatusCode.InternalServerError; // 500 if unexpected
+        Exception exception = context.Exception;
+        HttpStatusCode code = HttpStatusCode.InternalServerError;
 
         if (exception is NotFoundException) code = HttpStatusCode.NotFound;
         else if (exception is UnauthorizedAccessException) code = HttpStatusCode.Unauthorized;

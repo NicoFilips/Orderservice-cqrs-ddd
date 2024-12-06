@@ -15,11 +15,11 @@ public class CreateOrderCommandHandler : IRequestHandler<CreateOrderCommand, Gui
         _inventoryRepository = inventoryRepository;
     }
 
-    public async Task<Guid> Handle(CreateOrderCommand command, CancellationToken cancellationToken)
+    public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
     {
-        var order = new Order(command.CustomerId, command.Items);
+        var order = new Order(request.CustomerId, request.Items);
 
-        var productQuantities = command.Items.ToDictionary(item => item.ProductId, item => item.Quantity);
+        var productQuantities = request.Items.ToDictionary(item => item.ProductId, item => item.Quantity);
 
         await _inventoryRepository.ReserveItemsAsync(productQuantities);
 

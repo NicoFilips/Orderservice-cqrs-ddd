@@ -2,12 +2,7 @@
 
 namespace OrderService_cqrs_ddd.Domain.Events;
 
-public class OrderCancelled : IDomainEvent
+public class OrderCancelled(Guid orderId) : IDomainEvent
 {
-    public Guid OrderId { get; }
-
-    public OrderCancelled(Guid orderId)
-    {
-        OrderId = orderId;
-    }
+    public Guid OrderId { get; } = orderId;
 }

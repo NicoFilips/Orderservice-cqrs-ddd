@@ -14,25 +14,41 @@ public class Order
     public decimal TotalAmount => Items.Sum(i => i.TotalPrice);
 
     private List<IDomainEvent> _domainEvents;
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents?.AsReadOnly();
+    public IReadOnlyCollection<IDomainEvent>? DomainEvents => _domainEvents?.AsReadOnly();
 
-    public Order(Guid customerId, List<OrderItem> items)
+    public Order(Guid customerId, List<OrderItem> items, List<IDomainEvent> domainEvents, string status)
     {
         Id = Guid.NewGuid();
         CustomerId = customerId;
         OrderDate = DateTime.UtcNow;
         Items = items ?? throw new ArgumentNullException(nameof(items));
-        Status = "Created";
+        _domainEvents = domainEvents;
+        Status = status;
 
         AddDomainEvent(new OrderCreated(Id));
     }
 
-    protected Order(){}
+    public Order(List<IDomainEvent> domainEvents, List<OrderItem> items, string status)
+    {
+        _domainEvents = domainEvents;
+        Items = items;
+        Status = status;
+    }
+
+    public Order(Guid requestId, List<OrderItem> items)
+    {
+        Id = requestId;
+        Items = items;
+        _domainEvents = new List<IDomainEvent>();
+        Status = "Created";
+    }
 
     public void Cancel()
     {
-        if (Status != "Created")
+        if (this.Status != "Created")
+        {
             throw new InvalidOperationException("Only created orders can be cancelled.");
+        }
 
         Status = "Cancelled";
         AddDomainEvent(new OrderCancelled(Id));
@@ -40,7 +56,7 @@ public class Order
 
     private void AddDomainEvent(IDomainEvent domainEvent)
     {
-        _domainEvents = _domainEvents ?? new List<IDomainEvent>();
+        _domainEvents ??= new List<IDomainEvent>();
         _domainEvents.Add(domainEvent);
     }
 }

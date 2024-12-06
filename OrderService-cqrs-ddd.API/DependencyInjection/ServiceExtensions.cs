@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using OrderService_cqrs_ddd.API.Filters;
-using OrderService_cqrs_ddd.Infrastructure.Repositories;
-using OrderService_cqrs_ddd.Shared.Logging;
+﻿using OrderService_cqrs_ddd.API.Filters;
+using OrderService_cqrs_ddd.SharedKernel.Logging;
 
 namespace OrderService_cqrs_ddd.API.DependencyInjection;
 

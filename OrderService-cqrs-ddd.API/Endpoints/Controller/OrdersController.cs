@@ -3,14 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using OrderService_cqrs_ddd.Application.Commands.CancelOrder;
 using OrderService_cqrs_ddd.Application.Commands.CreateOrder;
 
-namespace OrderService_cqrs_ddd.API.Controller;
+namespace OrderService_cqrs_ddd.API.Endpoints.Controller;
 
 [ApiController]
 [Route("api/[controller]")]
 public class OrdersController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly string ntype = "OrdersController";
 
     public OrdersController(IMediator mediator)
     {
@@ -20,7 +19,7 @@ public class OrdersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateOrder([FromBody] CreateOrderCommand command)
     {
-        var result = await _mediator.Send(command);
+        Guid result = await _mediator.Send(command);
         return Ok(result);
     }
 

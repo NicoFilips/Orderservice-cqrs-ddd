@@ -13,10 +13,7 @@ public class OrderRepository : IOrderRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Order> GetByIdAsync(Guid orderId)
-    {
-        return await _dbContext.Orders.FindAsync(orderId);
-    }
+    public async Task<Order> GetByIdAsync(Guid orderId) => await _dbContext.Orders.FindAsync(orderId) ?? throw new InvalidOperationException($"Order with ID {orderId} was not found.");
 
     public async Task SaveAsync(Order order)
     {
@@ -26,7 +23,7 @@ public class OrderRepository : IOrderRepository
 
     public async Task DeleteAsync(Guid orderId)
     {
-        var order = await _dbContext.Orders.FindAsync(orderId);
+        Order? order = await _dbContext.Orders.FindAsync(orderId);
         if (order != null)
         {
             _dbContext.Orders.Remove(order);

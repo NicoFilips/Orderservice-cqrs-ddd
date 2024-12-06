@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Globalization;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Events;
 
-namespace OrderService_cqrs_ddd.Shared.Logging;
+namespace OrderService_cqrs_ddd.SharedKernel.Logging;
 
 public static class LoggingExtensions
 {
@@ -12,8 +13,7 @@ public static class LoggingExtensions
                     .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
                     .MinimumLevel.Information()
                     .Enrich.FromLogContext()
-                    .WriteTo.Console()
-                    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+                    .WriteTo.Console(formatProvider: CultureInfo.InvariantCulture)
                     .CreateLogger();
 
         services.AddLogging(loggingBuilder =>
