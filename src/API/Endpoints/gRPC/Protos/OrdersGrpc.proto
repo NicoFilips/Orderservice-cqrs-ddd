@@ -1,0 +1,30 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "OrderService.API.Grpc";
+
+service OrderService {
+    rpc CreateOrder (CreateOrderRequest) returns (CreateOrderResponse);
+    rpc CancelOrder (CancelOrderRequest) returns (CancelOrderResponse);
+}
+
+message CreateOrderRequest {
+    string customerId = 1;
+    repeated OrderItemRequest items = 2;
+}
+
+message OrderItemRequest {
+    string productId = 1;
+    int32 quantity = 2;
+}
+
+message CreateOrderResponse {
+    string orderId = 1;
+}
+
+message CancelOrderRequest {
+    string orderId = 1;
+}
+
+message CancelOrderResponse {
+    string message = 1;
+}
