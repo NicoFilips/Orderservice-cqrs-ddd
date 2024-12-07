@@ -8,7 +8,7 @@
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="8.0.0-alpha.1" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
@@ -22,12 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\API\API.csproj" />
+    <ProjectReference Include="..\..\src\API\API.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore">
-      <HintPath>..\..\..\..\..\..\..\Program Files\dotnet\shared\Microsoft.AspNetCore.App\8.0.8\Microsoft.AspNetCore.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  
 </Project>
