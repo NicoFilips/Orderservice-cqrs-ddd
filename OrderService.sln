@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastucture.tests", "tests\Infrastucture.tests\Infrastucture.tests.csproj", "{0E0638F9-B94B-4424-BD1E-A38B488C4266}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Smoketests", "API.Smoketests\API.Smoketests.csproj", "{9CA139D4-D2BF-46F8-843E-05211A8EB73A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Smoketests", "tests\API.Smoketests\API.Smoketests.csproj", "{9CA139D4-D2BF-46F8-843E-05211A8EB73A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
