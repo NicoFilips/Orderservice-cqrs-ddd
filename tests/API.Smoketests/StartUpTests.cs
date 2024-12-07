@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Builder;
 using NUnit.Framework;
 
 namespace OrderService.API.Smoketests;
-
 [TestFixture]
 public class StartUpTests
 {
