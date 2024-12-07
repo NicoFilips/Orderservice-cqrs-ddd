@@ -21,9 +21,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MediatR" Version="12.4.1"/>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,9 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj"/>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj"/>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\SharedKernel\SharedKernel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\swagger-ui\swagger-dark.css" />
   </ItemGroup>
 
 

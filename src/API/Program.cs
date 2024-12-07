@@ -6,8 +6,9 @@ using OrderService.Infrastructure.DependencyInjection;
 
 namespace OrderService.API;
 
-public static class Program
+public class Program
 {
+    [STAThread]
     public static void Main(string[] args)
     {
         WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -26,9 +27,10 @@ public static class Program
 
         if (app.Environment.IsDevelopment())
         {
+            app.UseHttpsRedirection();
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
-            app.UseSwaggerUI();
+            app.UseSwaggerUI(options => { options.InjectStylesheet("/swagger-ui/swagger-dark.css"); });
         }
 
         // gRPC Endpoints
@@ -45,9 +47,9 @@ public static class Program
         // Minimal API Endpoints
         app.MapOrdersEndpoints();
 
-        app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
+        app.UseStaticFiles();
 
         app.Run();
     }

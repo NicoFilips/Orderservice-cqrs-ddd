@@ -15,18 +15,18 @@ COPY ["src/Domain/Domain.csproj", "Domain/"]
 COPY ["src/SharedKernel/SharedKernel.csproj", "SharedKernel/"]
 COPY ["src/API/Endpoints/gRPC/Protos/OrdersGrpc.proto", "API/Endpoints/gRPC/Protos/"]
 
+COPY . .
+
 # Restore dependencies
 RUN dotnet restore "API/API.csproj"
 
-# Copy the entire source code
 COPY . .
 
-# Publish the API project
-WORKDIR "/src/API"
-RUN dotnet publish "API.csproj" -c Release -o /app/publish
+WORKDIR "src/API"
+RUN dotnet publish "API.csproj" -c Release -o /app
 
 # Final runtime image
 FROM base AS final
 WORKDIR /app
-COPY --from=build /app/publish .
+COPY --from=build /app .
 ENTRYPOINT ["dotnet", "API.dll"]

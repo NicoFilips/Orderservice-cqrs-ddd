@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.0-rc.1.24451.1" />
+      <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.0" />
     </ItemGroup>
 
     <ItemGroup>
