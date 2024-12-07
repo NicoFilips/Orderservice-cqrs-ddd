@@ -6,7 +6,8 @@ using OrderService.Application.Commands.CreateOrder;
 namespace OrderService.API.Endpoints.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api-controller/[controller]")]
+[Produces("application/json")]
 public class OrdersController : ControllerBase
 {
     private readonly IMediator _mediator;

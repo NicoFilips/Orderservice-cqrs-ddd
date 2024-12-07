@@ -19,6 +19,8 @@ public static class Program
         builder.Services.AddInfrastructure();
         builder.Services.AddApplication();
         builder.Services.AddGrpc();
+        builder.Services.AddGrpcReflection();
+        builder.Services.AddControllers();
 
         WebApplication app = builder.Build();
 
@@ -30,9 +32,15 @@ public static class Program
         }
 
         // gRPC Endpoints
+        app.UseGrpcWeb();
         app.MapGrpcService<OrdersGrpc>();
-        app.MapGet("/", () =>
-            "Use a gRPC client to communicate with the gRPC endpoints. This application does not support HTTP 1.1 requests.");
+
+        app.MapGet("/grpc-info", () => "Use a gRPC client to communicate with the gRPC endpoints.")
+           .WithTags("gRPC")
+           .WithSummary("Information about gRPC endpoints")
+           .WithDescription("gRPC Endpoints")
+           .WithName("GrpcInfoEndpoint")
+           .WithOpenApi();
 
         // Minimal API Endpoints
         app.MapOrdersEndpoints();
