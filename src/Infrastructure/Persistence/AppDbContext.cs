@@ -16,6 +16,15 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
 
         modelBuilder.Entity<Order>().HasKey(o => o.Id);
 
+        modelBuilder.Entity<Order>().OwnsOne(
+            o => o.Item,
+            item =>
+            {
+                item.Property(i => i.ProductId).IsRequired();
+                item.Property(i => i.Quantity).IsRequired();
+                item.Property(i => i.UnitPrice).IsRequired();
+            });
+
         modelBuilder.Entity<InventoryItem>().HasKey(i => i.ProductId);
     }
 }
