@@ -6,7 +6,6 @@ public class OrderItem
     public Guid ProductId { get; init; }
     public int Quantity { get; set; }
     public double UnitPrice { get; init; }
-    private double TotalPrice => Quantity * UnitPrice;
 
     public OrderItem(int quantity, double unitPrice, Guid productId = default)
     {

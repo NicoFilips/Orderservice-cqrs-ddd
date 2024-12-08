@@ -9,7 +9,8 @@ public class Order
     public Guid Id { get; private set; }
     public Guid CustomerId { get; private set; }
     public DateTime OrderDate { get; init; }
-    private OrderItem Items { get; set; }
+
+    private readonly OrderItem _item;
     public string Status { get; set; }
 
     private List<IDomainEvent> _domainEvents;
@@ -20,7 +21,7 @@ public class Order
         Id = Guid.NewGuid();
         CustomerId = customerId;
         OrderDate = DateTime.UtcNow;
-        Items = item ?? throw new ArgumentNullException(nameof(item));
+        _item = item ?? throw new ArgumentNullException(nameof(item));
         _domainEvents = domainEvents;
         Status = status;
 
@@ -30,13 +31,13 @@ public class Order
     public Order(List<IDomainEvent> domainEvents, OrderItem item, string status)
     {
         _domainEvents = domainEvents;
-        Items = item;
+        _item = item;
         Status = status;
     }
     public Order(Guid orderId, OrderItem item, string status)
     {
         Id = orderId;
-        Items = item;
+        _item = item;
         Status = status;
         _domainEvents = new List<IDomainEvent>();
     }
@@ -44,7 +45,7 @@ public class Order
     public Order(Guid requestId, OrderItem item)
     {
         Id = requestId;
-        Items = item;
+        _item = item;
         _domainEvents = new List<IDomainEvent>();
         Status = "Created";
     }
@@ -54,7 +55,7 @@ public class Order
         Id = Guid.Empty;
         CustomerId = Guid.Empty;
         OrderDate = DateTime.MinValue;
-        Items = new OrderItem();
+        _item = new OrderItem();
         _domainEvents = new List<IDomainEvent>();
         Status = "Created";
     }
