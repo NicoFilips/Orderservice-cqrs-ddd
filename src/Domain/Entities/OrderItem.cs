@@ -3,20 +3,25 @@
 public class OrderItem
 {
     public Guid ProductId { get; init; }
-    public int Quantity { get; init; }
-    public decimal UnitPrice { get; init; }
-    public decimal TotalPrice => Quantity * UnitPrice;
+    public int Quantity { get; set; }
+    public double UnitPrice { get; init; }
+    public double TotalPrice => Quantity * UnitPrice;
 
-    public OrderItem(int quantity, decimal unitPrice, Guid productId = default)
+    public OrderItem(int quantity, double unitPrice, Guid productId = default)
     {
         ProductId = productId;
         Quantity = quantity;
         UnitPrice = unitPrice;
     }
-    public OrderItem(int quantity, decimal unitPrice)
+    public OrderItem(int quantity, double unitPrice)
     {
         Quantity = quantity;
         UnitPrice = unitPrice;
     }
-    public OrderItem() { throw new NotImplementedException(); }
+    public OrderItem()
+    {
+        ProductId = Guid.Empty;
+        Quantity = 0;
+        UnitPrice = 0;
+    }
 }

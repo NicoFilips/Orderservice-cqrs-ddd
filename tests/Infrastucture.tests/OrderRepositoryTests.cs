@@ -27,7 +27,7 @@ public class OrderRepositoryTests
     public async Task AddOrder_Should_Add_Order_To_InMemoryDb()
     {
         // Arrange
-        var order = new Order(Guid.NewGuid(), new List<OrderItem>());
+        var order = new Order(Guid.NewGuid(), new OrderItem());
 
         // Act
         await _orderRepository.SaveAsync(order);
@@ -52,7 +52,7 @@ public class OrderRepositoryTests
     public async Task DeleteOrder_Should_Remove_Order_From_InMemoryDb()
     {
         // Arrange
-        var order = new Order(Guid.NewGuid(), new List<OrderItem>());
+        var order = new Order(Guid.NewGuid(), new OrderItem());
         await _orderRepository.SaveAsync(order);
 
         // Act

@@ -6,7 +6,7 @@ using OrderService.Infrastructure.DependencyInjection;
 
 namespace OrderService.API;
 
-public class Program
+public static class Program
 {
     [STAThread]
     public static void Main(string[] args)
@@ -17,6 +17,7 @@ public class Program
         builder.Services.ConfigureServices();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
+        builder.Services.AddCustomSwagger();
         builder.Services.AddInfrastructure();
         builder.Services.AddApplication();
         builder.Services.AddGrpc();

@@ -6,5 +6,5 @@ public interface IInventoryRepository
 {
     Task<InventoryItem?> GetItemAsync(Guid productId);
 
-    Task ReserveItemsAsync(Dictionary<Guid, int> productQuantities);
+    Task ReserveItemsAsync(KeyValuePair<Guid, int> productQuantities);
 }

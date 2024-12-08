@@ -16,18 +16,15 @@ public class InventoryRepository : IInventoryRepository
 
     public async Task<InventoryItem?> GetItemAsync(Guid productId) => await _dbContext.InventoryItems.FirstOrDefaultAsync(i => i.ProductId == productId);
 
-    public async Task ReserveItemsAsync(Dictionary<Guid, int> productQuantities)
+    public async Task ReserveItemsAsync(KeyValuePair<Guid, int> productQuantities)
     {
-        foreach (KeyValuePair<Guid, int> product in productQuantities)
-        {
-            InventoryItem? inventoryItem = await GetItemAsync(product.Key) ?? throw new InvalidOperationException($"Product with ID {product.Key} not found in inventory.");
+        InventoryItem? inventoryItem = await GetItemAsync(productQuantities.Key) ?? throw new InvalidOperationException($"Product with ID {productQuantities.Key} not found in inventory.");
 
-            if (inventoryItem.Quantity < product.Value)
-                throw new InvalidOperationException($"Not enough stock for product with ID {product.Key}. Available: {inventoryItem.Quantity}, Requested: {product.Value}");
+        if (inventoryItem.Quantity < productQuantities.Value)
+            throw new InvalidOperationException($"Not enough stock for product with ID {productQuantities.Key}. Available: {inventoryItem.Quantity}, Requested: {productQuantities.Value}");
 
-            inventoryItem.Quantity -= product.Value;
-            _dbContext.InventoryItems.Update(inventoryItem);
-        }
+        inventoryItem.Quantity -= productQuantities.Value;
+        _dbContext.InventoryItems.Update(inventoryItem);
         await _dbContext.SaveChangesAsync();
     }
 }
