@@ -237,6 +237,9 @@ dotnet_diagnostic.sa1629.severity = none
 # IDE0160 : Convert to block scoped namespace
 dotnet_diagnostic.ide0160.severity = none
 
+# IDE0200 : Property accessors should be single-line expressions
+dotnet_diagnostic.IDE0200.severity = none
+
 # SA1623: The property's documentation summary text should begin with: 'Gets'
 dotnet_diagnostic.sa1623.severity = none
 
