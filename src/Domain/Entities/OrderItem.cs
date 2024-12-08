@@ -2,10 +2,11 @@
 
 public class OrderItem
 {
+    public Guid CustomerId { get; set; }
     public Guid ProductId { get; init; }
     public int Quantity { get; set; }
     public double UnitPrice { get; init; }
-    public double TotalPrice => Quantity * UnitPrice;
+    private double TotalPrice => Quantity * UnitPrice;
 
     public OrderItem(int quantity, double unitPrice, Guid productId = default)
     {

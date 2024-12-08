@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using OrderService.Application.Repositories;
-using OrderService.Infrastructure.Persistence;
 using OrderService.Infrastructure.Repositories;
 using OrderService.SharedKernel.Logging;
 
@@ -11,9 +9,7 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        services.AddDbContext<AppDbContext>(
-            options =>
-            options.UseInMemoryDatabase("InMemoryDb"));
+        services.CreateInMemoryContext();
         services.AddScoped<IOrderRepository, OrderRepository>();
         services.AddScoped<IInventoryRepository, InventoryRepository>();
         services.AddSerilogLogging();

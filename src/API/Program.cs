@@ -1,7 +1,10 @@
+using FluentValidation;
+using MediatR;
 using OrderService.API.DependencyInjection;
 using OrderService.API.Endpoints.GRPC;
 using OrderService.API.Endpoints.MinimalApi;
 using OrderService.Application.DependencyInjection;
+using OrderService.Application.Validation;
 using OrderService.Infrastructure.DependencyInjection;
 
 namespace OrderService.API;
@@ -23,6 +26,8 @@ public static class Program
         builder.Services.AddGrpc();
         builder.Services.AddGrpcReflection();
         builder.Services.AddControllers();
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        builder.Services.AddValidatorsFromAssemblyContaining<CreateOrderCommandValidator>();
 
         WebApplication app = builder.Build();
 

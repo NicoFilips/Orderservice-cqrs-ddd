@@ -10,7 +10,7 @@ public class Order
     public Guid CustomerId { get; private set; }
     public DateTime OrderDate { get; init; }
     private OrderItem Items { get; set; }
-    private string Status { get; set; }
+    public string Status { get; set; }
 
     private List<IDomainEvent> _domainEvents;
     public IReadOnlyCollection<IDomainEvent>? DomainEvents => _domainEvents?.AsReadOnly();
@@ -33,11 +33,28 @@ public class Order
         Items = item;
         Status = status;
     }
+    public Order(Guid orderId, OrderItem item, string status)
+    {
+        Id = orderId;
+        Items = item;
+        Status = status;
+        _domainEvents = new List<IDomainEvent>();
+    }
 
     public Order(Guid requestId, OrderItem item)
     {
         Id = requestId;
         Items = item;
+        _domainEvents = new List<IDomainEvent>();
+        Status = "Created";
+    }
+
+    public Order()
+    {
+        Id = Guid.Empty;
+        CustomerId = Guid.Empty;
+        OrderDate = DateTime.MinValue;
+        Items = new OrderItem();
         _domainEvents = new List<IDomainEvent>();
         Status = "Created";
     }
