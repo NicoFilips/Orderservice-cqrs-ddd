@@ -63,6 +63,7 @@ public static class DbUtil
         dbContext.Orders.Add(
             new Order(
                 Guid.Parse(Order1Id),
+                Guid.Parse(Customer1Id),
                 new OrderItem(
                     5,
                     10.99,
@@ -72,6 +73,7 @@ public static class DbUtil
         dbContext.Orders.Add(
             new Order(
                 Guid.Parse(Order2Id),
+                Guid.Parse(Customer1Id),
                 new OrderItem(
                     2,
                     20.49,
@@ -81,6 +83,7 @@ public static class DbUtil
         dbContext.Orders.Add(
             new Order(
                 Guid.Parse(Order3Id),
+                Guid.Parse(Customer1Id),
                 new OrderItem(
                     1,
                     15.75,
@@ -90,6 +93,7 @@ public static class DbUtil
         dbContext.Orders.Add(
             new Order(
                 Guid.Parse(Order4Id),
+                Guid.Parse(Customer1Id),
                 new OrderItem(
                     10, // Quantity
                     5.50, // UnitPrice
@@ -99,6 +103,7 @@ public static class DbUtil
         dbContext.Orders.Add(
             new Order(
                 Guid.Parse(Order5Id),
+                Guid.Parse(Customer1Id),
                 new OrderItem(
                     3,
                     7.80,

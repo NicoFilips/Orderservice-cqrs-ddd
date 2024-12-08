@@ -45,6 +45,7 @@ public class OrderRepositoryTests
 
         var testOrder = new Order(
             Guid.NewGuid(),
+            Guid.NewGuid(),
             new OrderItem(5, 10.99, Guid.NewGuid()),
             "Created");
 

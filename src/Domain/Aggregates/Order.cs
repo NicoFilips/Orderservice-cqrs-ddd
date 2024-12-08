@@ -34,9 +34,10 @@ public class Order
         Item = item;
         Status = status;
     }
-    public Order(Guid orderId, OrderItem item, string status)
+    public Order(Guid orderId, Guid customerId, OrderItem item, string status)
     {
         Id = orderId;
+        CustomerId = customerId;
         Item = item;
         Status = status;
         _domainEvents = new List<IDomainEvent>();
