@@ -1,5 +1,6 @@
 ﻿using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using OrderService.Application.Commands.CancelOrder;
 using OrderService.Application.Commands.CreateOrder;
 
 namespace OrderService.API.DependencyInjection;
@@ -18,31 +19,49 @@ public static class SwaggerExtensions
             });
 
             // Beispielwerte für `CreateOrderRequest` definieren
-            c.MapType<CreateOrderCommand>(() => new OpenApiSchema
+            c.MapType<CreateOrderCommand>(
+                () => new OpenApiSchema
+                {
+                    Type = "object",
+                    Properties = new Dictionary<string, OpenApiSchema>
+                    {
+                        ["customerId"] = new OpenApiSchema
+                        {
+                            Type = "string",
+                            Example = new OpenApiString("123e4567-e89b-12d3-a456-426614174000")
+                        },
+                        ["item"] = new OpenApiSchema
+                        {
+                            Type = "object",
+                            Properties = new Dictionary<string, OpenApiSchema>
+                            {
+                                ["productId"] = new OpenApiSchema
+                                {
+                                    Type = "string",
+                                    Example = new OpenApiString("123e4567-e89b-12d3-a456-426614174001")
+                                },
+                                ["quantity"] = new OpenApiSchema
+                                {
+                                    Type = "integer",
+                                    Example = new OpenApiInteger(10)
+                                }
+                            }
+                        }
+                    }
+                });
+            c.MapType<CancelOrderCommand>(
+                () => new OpenApiSchema
             {
                 Type = "object",
                 Properties = new Dictionary<string, OpenApiSchema>
                 {
-                    ["customerId"] = new OpenApiSchema
+                    ["orderId"] = new OpenApiSchema
                     {
                         Type = "string",
-                        Example = new OpenApiString("123e4567-e89b-12d3-a456-426614174000")
-                    },
-                    ["productId"] = new OpenApiSchema
-                    {
-                        Type = "string",
-                        Example = new OpenApiString("product-001")
-                    },
-                    ["quantity"] = new OpenApiSchema
-                    {
-                        Type = "integer",
-                        Example = new OpenApiInteger(10)
+                        Example = new OpenApiString("323e4567-e89b-12d3-a456-426614174200")
                     }
                 }
             });
-
-            // Optionale Einstellungen: XML-Kommentare oder Sicherheit
-            // c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "YourApi.xml"));
         });
 
         return services;
