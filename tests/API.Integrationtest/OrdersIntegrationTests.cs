@@ -11,7 +11,6 @@ using OrderService.Application.Commands.CreateOrder;
 using OrderService.Infrastructure.Persistence;
 
 namespace API.Integrationtest;
-
 [TestFixture]
 [Ignore("This is a manual test and should only be run manually.")]
 public class OrdersIntegrationTests

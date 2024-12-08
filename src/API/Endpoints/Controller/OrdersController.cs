@@ -11,9 +11,9 @@ namespace OrderService.API.Endpoints.Controller;
 public class OrdersController : ControllerBase
 {
     private readonly IMediator _mediator;
-    private readonly ILogger _logger;
+    private readonly ILogger<OrdersController> _logger;
 
-    public OrdersController(IMediator mediator, ILogger logger)
+    public OrdersController(IMediator mediator, ILogger<OrdersController> logger)
     {
         _mediator = mediator;
         _logger = logger;

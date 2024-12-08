@@ -17,11 +17,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastucture.tests", "test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Smoketests", "tests\API.Smoketests\API.Smoketests.csproj", "{9CA139D4-D2BF-46F8-843E-05211A8EB73A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Integrationtest", "API.Integrationtest\API.Integrationtest.csproj", "{5A87A0DB-259F-44E2-9125-8BD29073730D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Integrationtest", "tests\API.Integrationtest\API.Integrationtest.csproj", "{5A87A0DB-259F-44E2-9125-8BD29073730D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.tests", "Application.tests\Application.tests.csproj", "{2DFCDCE2-DCBC-4F53-8584-A013B8346E88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.tests", "tests\Application.tests\Application.tests.csproj", "{2DFCDCE2-DCBC-4F53-8584-A013B8346E88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.tests", "Domain.tests\Domain.tests.csproj", "{6139FC81-2FD2-41FF-8F78-C6EF6C608224}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.tests", "tests\Domain.tests\Domain.tests.csproj", "{6139FC81-2FD2-41FF-8F78-C6EF6C608224}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
