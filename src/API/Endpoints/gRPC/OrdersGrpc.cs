@@ -21,18 +21,19 @@ public class OrdersGrpc : OrderService.API.Grpc.OrderService.OrderServiceBase
         var command = new CreateOrderCommand
         {
             CustomerId = Guid.Parse(request.CustomerId),
-            Items = request.Items.Select(item => new OrderItem
+            Item = new OrderItem
             {
-                ProductId = Guid.Parse(item.ProductId),
-                Quantity = item.Quantity
-            }).ToList()
+                ProductId = Guid.Parse(request.Item.ProductId),
+                Quantity = request.Item.Quantity
+            }
         };
 
         Guid orderId = await _mediator.Send(command);
 
+        // Bruch von CQRS, da wir hier die ID des erstellten Orders zurückgeben -> Für die Demo aber ok
         return new CreateOrderResponse
         {
-            OrderId = orderId.ToString() // Konvertiere Guid zu string
+            OrderId = orderId.ToString()
         };
     }
 
