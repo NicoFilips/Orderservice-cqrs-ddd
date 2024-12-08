@@ -25,9 +25,9 @@ public class OrdersController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> CancelOrder(Guid id)
+    public async Task<IActionResult> CancelOrder(CancelOrderCommand command)
     {
-        await _mediator.Send(new CancelOrderCommand { OrderId = id });
+        await _mediator.Send(command);
         return NoContent();
     }
 }

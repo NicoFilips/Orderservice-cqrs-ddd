@@ -17,7 +17,10 @@ public class OrderRepository : IOrderRepository
 
     public async Task SaveAsync(Order order)
     {
-        _dbContext.Orders.Update(order);
+        _ = await _dbContext.Orders.FindAsync(order.Id) == null
+            ? await _dbContext.Orders.AddAsync(order)
+            : _dbContext.Orders.Update(order);
+
         await _dbContext.SaveChangesAsync();
     }
 

@@ -42,11 +42,13 @@ public class Order
         _domainEvents = new List<IDomainEvent>();
     }
 
-    public Order(Guid requestId, OrderItem item)
+    public Order(Guid customerId, OrderItem item)
     {
-        Id = requestId;
+        Id = Guid.NewGuid();
+        CustomerId = customerId;
         _item = item;
         _domainEvents = new List<IDomainEvent>();
+        OrderDate = DateTime.UtcNow;
         Status = "Created";
     }
 

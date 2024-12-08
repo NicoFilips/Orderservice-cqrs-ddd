@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Logging;
 using OrderService.Application.Repositories;
+using OrderService.Domain.Aggregates;
 using OrderService.SharedKernel.Exceptions;
 
 namespace OrderService.Application.Commands.CancelOrder;
@@ -18,7 +19,7 @@ public class CancelOrderCommandHandler : IRequestHandler<CancelOrderCommand, Uni
 
     public async Task<Unit> Handle(CancelOrderCommand request, CancellationToken cancellationToken)
     {
-        Domain.Aggregates.Order order = await _orderRepository.GetByIdAsync(request.OrderId) ?? throw new NotFoundException($"Order with ID {request.OrderId} not found.");
+        Order order = await _orderRepository.GetByIdAsync(request.OrderId) ?? throw new NotFoundException($"Order with ID {request.OrderId} not found."); // Exception sollte hier nicht aus der Domain kommen, da technischer Fehler
         order.Cancel();
 
         await _orderRepository.SaveAsync(order);
