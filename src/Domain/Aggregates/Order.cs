@@ -10,7 +10,7 @@ public class Order
     public Guid CustomerId { get; private set; }
     public DateTime OrderDate { get; init; }
 
-    public required OrderItem Item { get; set; }
+    public OrderItem Item { get; set; }
     public string Status { get; set; }
 
     private List<IDomainEvent> _domainEvents;
